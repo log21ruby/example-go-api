@@ -1,0 +1,145 @@
+definitions:
+  model.BaseErrorResponse:
+    properties:
+      error:
+        example: 4
+        type: integer
+      result:
+        type: string
+    type: object
+  model.BaseResponse:
+    properties:
+      error:
+        type: integer
+      result:
+        type: object
+    type: object
+  model.User:
+    properties:
+      account_code:
+        type: string
+      created_at:
+        type: string
+      email:
+        type: string
+      email_verified:
+        type: integer
+      ext_id:
+        type: integer
+      first_name:
+        type: string
+      first_name_th:
+        type: string
+      freeze:
+        type: integer
+      freeze_crypto_withdraw:
+        type: integer
+      google_authenticator:
+        type: string
+      google_authenticator_trade_verified:
+        type: integer
+      google_authenticator_verified:
+        type: integer
+      id:
+        type: integer
+      last_ip:
+        type: string
+      last_login:
+        type: string
+      last_name:
+        type: string
+      last_name_th:
+        type: string
+      last_pw_status:
+        type: integer
+      last_pw_updated:
+        type: string
+      mobile_pin:
+        type: string
+      otp_enabled:
+        type: integer
+      password:
+        type: string
+      rank_vip:
+        type: integer
+      referral_id:
+        type: integer
+      risk_id:
+        type: integer
+      status:
+        type: integer
+      tel:
+        type: string
+      trading_credit:
+        type: number
+      updated_at:
+        type: string
+      uuid:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /healthcheck:
+    get:
+      parameters:
+      - description: sample query
+        in: query
+        name: test
+        type: string
+      responses:
+        "200":
+          description: server is ok
+          schema:
+            allOf:
+            - $ref: '#/definitions/model.BaseResponse'
+            - properties:
+                result:
+                  type: boolean
+              type: object
+        default:
+          description: server is not ok
+          schema:
+            allOf:
+            - $ref: '#/definitions/model.BaseErrorResponse'
+            - properties:
+                error:
+                  type: integer
+              type: object
+  /v1/user/{id}:
+    post:
+      parameters:
+      - description: user id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: server is ok
+          schema:
+            allOf:
+            - $ref: '#/definitions/model.BaseResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.User'
+              type: object
+        default:
+          description: server is not ok
+          schema:
+            allOf:
+            - $ref: '#/definitions/model.BaseErrorResponse'
+            - properties:
+                code:
+                  type: integer
+                error:
+                  type: string
+              type: object
+      tags:
+      - user
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

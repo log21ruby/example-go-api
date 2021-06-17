@@ -1,0 +1,33 @@
+app:
+  tz: "Asia/Bangkok"
+  name: "example-go-api"
+  host: "localhost:9003"
+  prepareStmt: true
+  prefork: false
+  port: "9003"
+  service: "example"
+
+mysql_web:
+  host: "staging-mysql-web.cluster-cgwlvsnt4fz1.ap-southeast-1.rds.amazonaws.com"
+  port: "33316"
+  database: "bitkub_web"
+  username: "bitkub_mobile"
+  password: "UoTw8qRPALrwHHv9UJydvFYL5R8ke2Xf"
+
+mysql_web_read:
+  host: "staging-mysql-web.cluster-ro-cgwlvsnt4fz1.ap-southeast-1.rds.amazonaws.com"
+  port: "33316"
+  database: "bitkub_web"
+  username: "bitkub_mobile"
+  password: "UoTw8qRPALrwHHv9UJydvFYL5R8ke2Xf"
+  
+mongo:
+  dsn: "mongodb+srv://bitkub_dev:g1BTEhLNP0daJKC1@dev.eoxwu.mongodb.net/?retryWrites=true&w=majority"
+
+redis:
+  fiberCacheDB: 0
+  DB: 0
+  host: "redis-18415.internal.c12329.ap-southeast-1-mz.ec2.cloud.rlrcp.com"
+  username: ""
+  port: "18415"
+  password: "j6B0T6M2VdKpKo2WKhHApAroQxypt1bc"
